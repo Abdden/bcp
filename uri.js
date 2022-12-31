@@ -7,8 +7,6 @@ function randomString(length) {
     }
     return setStr;
 }
-console.log(randomString(5));
-
 
 //Can change 7 to 2 for longer results.
 // let r = (Math.random() + 1).toString(36).substring(7);
