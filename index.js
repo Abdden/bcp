@@ -32,7 +32,7 @@ try {
     console.log('Server has started!');
   });
 } catch (error) {
-  console.log(error);
+  console.log(error,'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 }
 
 export default app;

@@ -11,7 +11,7 @@ passGen();
 
 const router = express.Router();
 
-router.get('/blogs', authenticateAdmin, BlogController.viewBlogs);
+router.get('/blogs', BlogController.viewBlogs);
 router.get('/blogs/:id', BlogController.getOneBlog);
 router.post(
   '/blogs',

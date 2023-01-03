@@ -1,7 +1,5 @@
 import jwt from "jsonwebtoken";
-// import dotenv from "dotenv"
 import SignedupUser from "../models/Signup.js";
-// dotenv.config();
 
 const ComLikeMidWare = async (req, res, next) => {
   try {
