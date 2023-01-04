@@ -1,9 +1,13 @@
 version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
 jobs:
   build:
     working_directory: ~/bcp
     docker:
       - image: cimg/node:18.12.1
+    environment:
+      DATABASE_URI: process.env.MONGODB_URI
     steps:
       - checkout
       - restore_cache:
@@ -18,5 +22,9 @@ jobs:
       - run:
           name: run tests
           command: npm run test
+      - coveralls/upload
       - store_artifacts:
           path: ~/bcp/artifacts
+notify:
+  webhooks:
+    - url: https://coveralls.io/webhook?repo_token=${process.env.COVERALLS_REPO_TOKEN}

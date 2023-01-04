@@ -3,10 +3,6 @@ import Blog from '../models/Blog.js';
 import Login from '../models/Login.js';
 
 let blogStats = async (req, res) => {
-  // const { error } = likesVal(req.body);
-  // if (error) {
-  //   return res.send(error.details[0].message);
-  // } else {
   const blog = await Blog.findOne({ _id: req.params.id });
 
   // const likeAuth = res.header('likesHeader', 'liking blog');
