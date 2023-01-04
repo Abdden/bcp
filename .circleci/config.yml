@@ -18,5 +18,6 @@ jobs:
       - run:
           name: run tests
           command: npm run test
+      # - run: cat ./coverage/coverage.json
       - store_artifacts:
           path: ~/bcp/artifacts

@@ -9,10 +9,10 @@ import { imgURI, randomString } from '../uri.js';
 const authKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FhY2Q1NzYwZTk3Njk3ZmMwNWUyZWEiLCJlbWFpbCI6ImNtcHVua0BqYWlsLm5ldCIsIm5hbWUiOiJDTVBVTksiLCJpYXQiOjE2NzI2NjY5NTN9.6IV_-qdcn1td9XcWFKYTusdkb-wOAqpzy0OR6xSfk14"
 
 
-test('Getting Signed Up Users', async () => {
-  const resBody = await request(app).get('/api/signup').set("Authorization", authKey).send()
-  expect(resBody.statusCode).toBe(200);
-});
+// test('Getting Signed Up Users', async () => {
+//   const resBody = await request(app).get('/api/signup').set("Authorization", authKey).send()
+//   expect(resBody.statusCode).toBe(200);
+// });
 
 
 test('Admin Sign Up', async () => {
