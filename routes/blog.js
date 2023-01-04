@@ -15,20 +15,23 @@ router.get('/blogs', BlogController.viewBlogs);
 router.get('/blogs/:id', BlogController.getOneBlog);
 router.post(
   '/blogs',
+  authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
   validateArticle,
   BlogController.blogOne
-);
-router.patch(
+  );
+router.put(
   '/blogs/:id',
+  authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
   validateArticle,
   BlogController.updateBlog
-);
+  );
 router.post('/blogs/:id/comments', ComLikeMidWare, BlogController.commentBlog);
 router.get('/blogs/:id/comments', BlogController.allCommentsBlog);
 router.delete(
   '/:id',
+  authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
   BlogController.deleteBlog
 );
