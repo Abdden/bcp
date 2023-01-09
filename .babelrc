@@ -2,21 +2,7 @@
   "presets": ["@babel/preset-env"],
   "plugins": [
     ["@babel/transform-runtime", { "regenerator": true }],
-    ["@babel/plugin-proposal-class-properties"]
+    ["@babel/plugin-proposal-class-properties"],
+    ["@babel/plugin-syntax-import-assertions"]
   ]
 }
-
-// {
-//   "presets": ["@babel/preset-env"],
-//   "plugins": [
-//     ["@babel/plugin-transform-runtime", { "regenerator": true }],
-//     ["@babel/plugin-proposal-class-properties"]
-//   ],
-//   "env": {
-//     "test": {
-//       "plugins": [
-//         "@babel/plugin-syntax-jsx"
-//       ]
-//     }
-//   }
-// }

@@ -16,10 +16,10 @@ export class BlogController {
       });
       const inDb = await Blog.findOne({ title: title });
       if (inDb) {
-        res.status(400).send('Blog Already Exists!');
+        return res.status(400).send('Blog Already Exists!');
       }
       await blog.save();
-      res.send(blog);
+      return res.send(blog);
     } catch (error) {
       return res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -37,7 +37,7 @@ export class BlogController {
   static async deleteBlog(req, res) {
     try {
       await Blog.deleteOne({ _id: req.params.id });
-      return res.status(204).json({ message: 'Blog Deletion Successful' });
+      return res.status(204).json();
     } catch (error) {
       return res.status(500).json({ error: error });
     }
@@ -90,7 +90,7 @@ export class BlogController {
   static async getOneBlog(req, res) {
     try {
       const post = await Blog.findOne({ _id: req.params.id });
-      res.send(post);
+      return res.send(post);
     } catch (error) {
       return res.status(500).json({ error: error });
     }
@@ -103,7 +103,6 @@ export class BlogController {
       email : res.locals.email,
       comment : req.body.comment
     }
-    console.log(comObj);
     // const { comment } = req.body;
     post.comments.push(comObj);
     await post.save();

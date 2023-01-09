@@ -13,7 +13,7 @@ const authenticateAdmin = async (req, res, next) => {
       const nameUser = authenticate.name;
       const exists = await AdminSignup.findOne({ email: emailUser, name: nameUser });
       if (!exists) {
-        res.status(401).json({ message: "You are Not authorized" });
+        res.status(401).json({ Message: "You are Not authorized" });
       } else {
         next();
       }
