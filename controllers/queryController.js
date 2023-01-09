@@ -23,7 +23,15 @@ export class QueryController {
       return res.status(200).json({ queries });
     } catch (error) {
       return res.status(500).json({ error: error });
-      console.log(error);
+    }
+  }
+
+  static async deleteQuery(req, res) {
+    try {
+      await Contact.deleteOne({ _id: req.params.id });
+      return res.status(204).json();
+    } catch (error) {
+      return res.status(500).json({ error: error });
     }
   }
 }

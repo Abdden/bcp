@@ -1,22 +1,20 @@
 import app from '../index.js';
 import request from 'supertest';
 import Blog from '../models/Blog';
+import Contact from '../models/Contact.js';
 import { imgURI, randomString } from '../uri.js';
 
-
-// const authKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzlmYTc0NjQyZjA2NGEyMmUwYmEzNjAiLCJpYXQiOjE2NzE3OTg2NjN9.4oA5WOfkiDfeo1Pz5KTDLaEleq2ZV2Ij1DdNEaptP2Q"
-
-const authKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FhY2Q1NzYwZTk3Njk3ZmMwNWUyZWEiLCJlbWFpbCI6ImNtcHVua0BqYWlsLm5ldCIsIm5hbWUiOiJDTVBVTksiLCJpYXQiOjE2NzI2NjY5NTN9.6IV_-qdcn1td9XcWFKYTusdkb-wOAqpzy0OR6xSfk14"
+// const authKey = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FhY2Q1NzYwZTk3Njk3ZmMwNWUyZWEiLCJlbWFpbCI6ImNtcHVua0BqYWlsLm5ldCIsIm5hbWUiOiJDTVBVTksiLCJpYXQiOjE2NzI2NjY5NTN9.6IV_-qdcn1td9XcWFKYTusdkb-wOAqpzy0OR6xSfk14"
 
 
-// test('Getting Signed Up Users', async () => {
-//   const resBody = await request(app).get('/api/signup').set("Authorization", authKey).send()
-//   expect(resBody.statusCode).toBe(200);
-// });
+test('Getting Signed Up Users', async () => {
+  const resBody = await request(app).get('/signup').set("Authorization", process.env.AUTHKEY).send()
+  expect(resBody.statusCode).toBe(200);
+});
 
 
 test('Admin Sign Up', async () => {
-  const resBody = await request(app).post('/api/signup/admin').set("Authorization", authKey).send({
+  const resBody = await request(app).post('/signup/admin').set("Authorization", process.env.AUTHKEY).send({
     name: `Cyber${randomString(5)}Punk`,
     email: `cyber${randomString(5)}@gmail.com`,
     password: "adminandela12345",
@@ -26,13 +24,13 @@ test('Admin Sign Up', async () => {
 
 
 test('Getting All The Blogs', async () => {
-  const resBody = await request(app).get('/api/blogs').send()
+  const resBody = await request(app).get('/blogs').send()
   expect(resBody.statusCode).toBe(200);
 });
 
 
 test('Posting a Blog', async () => {
-  const resBody = await request(app).post('/api/blogs').set('Authorization', authKey).send({
+  const resBody = await request(app).post('/blogs').set('Authorization', process.env.AUTHKEY).send({
     title: `QWERTY ${randomString(5)} mbvmvbmdj`,
     image: imgURI,
     content: "gDNGDJDJDGDNGDNGDMHDMDMDMDDMDHDDMDMDMDDDYDHDYDHMDHMYDYD"
@@ -44,7 +42,7 @@ test('Posting a Blog', async () => {
 test('Liking a Blog', async () => {
   const blog = await Blog.findOne();
   const id = blog._id;
-  const resBody = await request(app).post('/api/blogs/' + id + '/stats').set('Authorization', authKey).send()
+  const resBody = await request(app).post('/blogs/' + id + '/stats').set('Authorization', process.env.AUTHKEY).send()
   expect(resBody.statusCode).toBe(200);
 });
 
@@ -52,7 +50,7 @@ test('Liking a Blog', async () => {
 test('Updating a Blog', async () => {
   const blog = await Blog.findOne();
   const id = blog._id;
-  const resBody = await request(app).put('/api/blogs/' + id).set('Authorization', authKey).send({
+  const resBody = await request(app).put('/blogs/' + id).set('Authorization', process.env.AUTHKEY).send({
     title: `QWERTY ${randomString(5)} mbvmvbmdj`,
     image: imgURI,
     content: "gDNGDJDJDGDNGDNGDMHDMDMDMDDMDHDDMDMDMDDDYDHDYDHMDHMYDYD"
@@ -65,9 +63,17 @@ test("Getting Single Blog", async () => {
   const blog = await Blog.findOne();
   const id = blog._id;
   const resBody = await request(app)
-    .get("/api/blogs/" + id)
+    .get("/blogs/" + id)
     .send();
   expect(resBody.statusCode).toBe(200);
+});
+
+
+test("Delete Blog", async () => {
+  const blog = await Blog.findOne();
+  const id = blog._id;
+  const resBody = await request(app).delete("/blogs/" + id).set("Authorization", process.env.AUTHKEY).send();
+  expect(resBody.statusCode).toBe(204);
 });
 
 
@@ -75,7 +81,7 @@ test("Getting Single Blog Comments", async () => {
   const blog = await Blog.findOne();
   const id = blog._id;
   const resBody = await request(app)
-    .get("/api/blogs/" + id + "/comments")
+    .get("/blogs/" + id + "/comments")
     .send();
   expect(resBody.statusCode).toBe(200);
 });
@@ -84,15 +90,23 @@ test("Getting Single Blog Comments", async () => {
 test("Commenting On Blog", async () => {
   const blog = await Blog.findOne();
   const id = blog._id;
-  const resBody = await request(app).post("/api/blogs/" + id + "/comments").set("Authorization", authKey).send({
+  const resBody = await request(app).post("/blogs/" + id + "/comments").set("Authorization", process.env.AUTHKEY).send({
       comment: `Something crazy ${randomString(5)} making this whole thing fail...`,
     })
   expect(resBody.statusCode).toBe(200);
 });
 
 
+test("Liking a Blog", async () => {
+  const blog = await Blog.findOne();
+  const id = blog._id;
+  const resBody = await request(app).post("/blogs/" + id + "/stats").set("Authorization", process.env.AUTHKEY).send()
+  expect(resBody.statusCode).toBe(200);
+});
+
+
 test('Sending User Query', async () => {
-  const resBody = await request(app).post('/api/contact').send({
+  const resBody = await request(app).post('/contact').send({
     names: `QWERTY ${randomString(5)}`,
     email: `abudd${randomString(5)}@gmail.com`,
     subject: "MNBVCXZLKJHGFDSA",
@@ -103,13 +117,21 @@ test('Sending User Query', async () => {
 
 
 test('View User Queries', async () => {
-  const resBody = await request(app).get('/api/contacts').set("Authorization", authKey).send()
+  const resBody = await request(app).get('/contacts').set("Authorization", process.env.AUTHKEY).send()
   expect(resBody.statusCode).toBe(200);
 });
 
 
+test('Delete User Query', async () => {
+  const query = await Contact.findOne();
+  const id = query._id;
+  const resBody = await request(app).delete('/contact/' + id).set("Authorization", process.env.AUTHKEY).send()
+  expect(resBody.statusCode).toBe(204);
+});
+
+
 test('User Login', async () => {
-  const resBody = await request(app).post('/api/login').send({
+  const resBody = await request(app).post('/login').send({
     email: "deal@som.net",
     password: "Dealwent500",
   })
@@ -119,8 +141,8 @@ test('User Login', async () => {
 
 test("User Signup", async () => {
   const resBody = await request(app)
-    .post("/api/signup")
-    .set("Authorization", authKey)
+    .post("/signup")
+    .set("Authorization", process.env.AUTHKEY)
     .send({
       name: `Cyber${randomString(5)}Punk`,
       email: `cyber${randomString(5)}@gmail.com`,
@@ -131,7 +153,7 @@ test("User Signup", async () => {
 
 
 test('User Signup Already Exists', async () => {
-  const resBody = await request(app).post('/api/signup').send({
+  const resBody = await request(app).post('/signup').send({
     name: "QWERTYQWERTY",
     email: "dollar@tom.net",
     password: "Duiwent8000",
@@ -141,7 +163,7 @@ test('User Signup Already Exists', async () => {
 
 
 test('User Signup Error', async () => {
-  const resBody = await request(app).post('/api/signup').send({
+  const resBody = await request(app).post('/signup').send({
     name: "QWERTYQWERTY",
     email: "dollartom.net",
     password: "Duiwent8000",
