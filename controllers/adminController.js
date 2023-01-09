@@ -17,7 +17,7 @@ export class AdminController {
         password: pasHash,
       });
       await user.save();
-      res.status(200).send({ User: user._id });
+      return res.status(200).send({ User: user._id });
     } catch (error) {
       return res.status(500).json({ error: 'Internal Server Error' });
     }

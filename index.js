@@ -9,8 +9,6 @@ import contactRoute from './routes/contact.js';
 import signupRoute from './routes/signup.js';
 import loginRoute from './routes/login.js';
 
-// http.createServer(app).listen(3000)
-// console.log("Listening at:// port:%s (HTTP)", 3000)
 
 const app = express();
 
@@ -25,7 +23,7 @@ try {
   mongoose.set('strictQuery', true);
   mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
-  }).then(() => console.log('DB Connected')).catch((error) => console.log(error));
+  }).then(() => console.log('DB Is Connected')).catch((error) => console.log(error));
 
   app.use('/', blogRoute);
   app.use('/', contactRoute);
@@ -37,7 +35,7 @@ try {
   }));
 
   app.listen(port, () => {
-    console.log('Server has started!');
+    console.log('Server Has Started!');
   });
 } catch (error) {
   console.log(error);

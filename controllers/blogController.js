@@ -45,19 +45,6 @@ export class BlogController {
 
   static async updateBlog(req, res) {
     try {
-      // const post = await Blog.findOne({ _id: req.params.id });
-
-      // if (req.body.title) {
-      //   post.title = req.body.title;
-      // }
-
-      // if (req.body.image) {
-      //   post.image = req.body.image;
-      // }
-
-      // if (req.body.content) {
-      //   post.content = req.body.content;
-      // }
 
       const { title, image, content } = req.body;
       const snapBack = await cloudinary.uploader.upload(image, {
@@ -68,7 +55,6 @@ export class BlogController {
         image: { public_id: snapBack.public_id, url: snapBack.secure_url },
         content,
       };
-
       await Blog.findOneAndUpdate(
         {
           _id: req.params.id,
@@ -79,8 +65,6 @@ export class BlogController {
           content: theUpdated.content,
         }
       );
-
-      // await post.save();
       return res.send(theUpdated);
     } catch (error) {
       return res.status(500).json({ error: error });
@@ -103,49 +87,15 @@ export class BlogController {
       email : res.locals.email,
       comment : req.body.comment
     }
-    // const { comment } = req.body;
     post.comments.push(comObj);
     await post.save();
-    res.send(post);
+    return res.send(post);
   }
 
   static async allCommentsBlog(req, res) {
     const post = await Blog.findOne({ _id: req.params.id });
-    res.send({ Comment: post.comments });
+    return res.send({ Comment: post.comments });
   }
-
-  // static async likeBlog(req, res) {
-  //   try {
-  //     const post = await Blog.findOne({ _id: req.params.id });
-
-  //     if (post.likes == null) {
-  //       post.likes = 0;
-  //       post.likes++;
-  //     } else {
-  //       post.likes++;
-  //     }
-  //     await post.save();
-  //     res.send(post);
-  //   } catch (error) {
-  //     return res.status(500).json({ error: error });
-  //   }
-  // }
-
-  // static async unLikeBlog(req, res) {
-  //   try {
-  //     const post = await Blog.findOne({ _id: req.params.id });
-
-  //     if (post.likes === null || post.likes === 0) {
-  //       post.likes = 0;
-  //     } else {
-  //       post.likes--;
-  //     }
-  //     await post.save();
-  //     res.send(post);
-  //   } catch (error) {
-  //     return res.status(500).json({ error: error });
-  //   }
-  // }
 }
 
 export default BlogController;

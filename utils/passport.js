@@ -27,11 +27,3 @@ async function passGen() {
 }
 
 export default passGen;
-
-// (jwtPayload, done) => {
-//       return User.findOne({ _id: jwtPayload })
-//         .then((user) => {
-//           return done(null, user);
-//         })
-//         .catch((err) => done(err));
-//     }
