@@ -40,7 +40,7 @@ userController.userOne, () => {
 
 
 router.get(
-  '/signup/',
+  '/signup',
   authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
   userController.viewUsers, () => {

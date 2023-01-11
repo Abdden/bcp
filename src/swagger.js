@@ -1,7 +1,7 @@
 import swaggerAutogen from "swagger-autogen"
 swaggerAutogen()
 
-const outputDoc = './swagger_output.json'
+const outputDoc = '../swagger_output.json'
 const allEndpointsFiles = ['./routes/*.js']
 
 const doc = {
@@ -10,9 +10,9 @@ const doc = {
         title: "MY REST API",
         description: "The Documentation For My Rest API"
     },
-    host: "localhost:5000",
+    host: process.env.HOST,
     basePath: "/",
-    schemes: ['http'],
+    schemes: ['https','http'],
     consumes: ['application/json'],
     produces: ['application/json'],
     tags: [
