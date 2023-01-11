@@ -5,6 +5,7 @@
     "title": "MY REST API",
     "description": "The Documentation For My Rest API"
   },
+  "host": "vast-rose-starfish-fez.cyclic.app",
   "basePath": "/",
   "tags": [
     {

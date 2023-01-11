@@ -10,7 +10,7 @@ const doc = {
         title: "MY REST API",
         description: "The Documentation For My Rest API"
     },
-    host: process.env.HOST,
+    host: process.env.LIVE_URL,
     basePath: "/",
     schemes: ['https','http'],
     consumes: ['application/json'],
@@ -89,3 +89,5 @@ const doc = {
 swaggerAutogen()(outputDoc, allEndpointsFiles, doc).then(async () => {
   await import('./index.js')
 });
+
+//Test

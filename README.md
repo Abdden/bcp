@@ -6,9 +6,9 @@
 
 [![CircleCI](https://dl.circleci.com/insights-snapshot/gh/Abdden/bcp/supreme/workflow/badge.svg?window=30d)](https://app.circleci.com/insights/github/Abdden/bcp/workflows/workflow/overview?branch=supreme&reporting-window=last-30-days&insights-snapshot=true)
 
-> Description
+>
 
-## My Brand BackEnd Server App & DataBase Connection
+## My Brand Server & DataBase Connection
 
 ## My Brand UI Template Is Hosted [here](https://abdden.github.io/my-brand/) On Gh-Pages.
 
@@ -55,7 +55,7 @@ $ npm run dev
 $ npm run test
 ```
 
-## Tools And Technologies Used For The App
+## Technologies Used For The App
 
 #### Built With
 
