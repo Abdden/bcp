@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "build": "babel -d dist",
-    "dev": "better-npm-run dev",
-    "swagger-autogen": "node swagger.js",
+    "build": "babel ./ -d dist",
+    "start": "better-npm-run start",
+    "swagger-autogen": "babel-node swagger.js",
     "test": "jest --testTimeout=50000 --detectOpenHandles --forceExit --collect-coverage && coveralls < coverage/lcov.info"
   },
   "betterScripts": {
-    "dev": {
-      "command": "nodemon --exec babel-node index.js"
+    "start": {
+      "command": "babel-node index.js"
     }
   },
   "keywords": [],
@@ -38,16 +37,16 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.0",
     "passport": "^0.6.0",
-    "passport-jwt": "^4.0.0"
+    "passport-jwt": "^4.0.0",
+    "swagger-autogen": "^2.22.0",
+    "swagger-jsdoc": "^6.2.7",
+    "swagger-ui-express": "^4.6.0"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
     "jest": "^29.3.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.20",
-    "supertest": "^6.3.3",
-    "swagger-autogen": "^2.22.0",
-    "swagger-jsdoc": "^6.2.7",
-    "swagger-ui-express": "^4.6.0"
+    "supertest": "^6.3.3"
   }
 }

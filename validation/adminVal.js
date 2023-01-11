@@ -1,4 +1,3 @@
-
 import exportAdmin from "../../model/admin";
 import jwt from "jsonwebtoken";
 const validateAdmin = async (req, res, next) => {

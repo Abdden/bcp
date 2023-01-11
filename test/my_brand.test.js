@@ -2,7 +2,7 @@ import app from '../index.js';
 import request from 'supertest';
 import Blog from '../models/Blog';
 import Contact from '../models/Contact.js';
-import { imgURI, randomString } from '../uri.js';
+import { imgURI, randomString } from '../test_samples.js';
 
 
 test('Getting Signed Up Users', async () => {
