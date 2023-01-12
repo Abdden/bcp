@@ -5,7 +5,7 @@
     "title": "MY REST API",
     "description": "The Documentation For My Rest API"
   },
-  "host": "localhost:5000",
+  "host": "herestohope.onrender.com",
   "basePath": "/",
   "tags": [
     {
@@ -21,10 +21,7 @@
       "description": "All Contact Endpoints"
     }
   ],
-  "schemes": [
-    "https",
-    "http"
-  ],
+  "schemes": ["https", "http"],
   "securityDefinitions": {
     "apiKeyAuth": {
       "type": "apiKey",
@@ -33,27 +30,26 @@
       "description": "The Authorization Token Needed To Get Access To The Protected Endpoints"
     }
   },
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/blogs": {
       "get": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "View All The Blogs",
         "description": "User Gets All The Available Blogs",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
       "post": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "Create/Post Blog",
         "description": "Admin Creates a Blog",
         "parameters": [
@@ -67,7 +63,17 @@
             }
           }
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -77,9 +83,7 @@
     },
     "/blogs/{id}": {
       "get": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "View a Single Blog",
         "description": "User Gets Single Blog",
         "parameters": [
@@ -90,12 +94,17 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
       "put": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "Update Blog Details",
         "description": "Admin Updates a Blog",
         "parameters": [
@@ -115,7 +124,40 @@
             }
           }
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["Blogs"],
+        "summary": "Delete a Blog",
+        "description": "Admin Deletes a Blog",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -125,9 +167,7 @@
     },
     "/blogs/{id}/comments": {
       "post": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "Post comment",
         "description": "User Comments On a Blog",
         "parameters": [
@@ -147,7 +187,11 @@
             }
           }
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -155,9 +199,7 @@
         ]
       },
       "get": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "View Single Blog Comments",
         "description": "User Gets All Comments On a Blog",
         "parameters": [
@@ -168,14 +210,16 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/blogs/{id}/stats": {
       "post": {
-        "tags": [
-          "Blogs"
-        ],
+        "tags": ["Blogs"],
         "summary": "Like/Unlike a Blog",
         "description": "User Likes or Unlikes a Blog",
         "parameters": [
@@ -196,9 +240,7 @@
     },
     "/contact": {
       "post": {
-        "tags": [
-          "Query"
-        ],
+        "tags": ["Query"],
         "summary": "Create/Post Query",
         "description": "User Sends a Query",
         "parameters": [
@@ -212,18 +254,58 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/contact/{id}": {
+      "delete": {
+        "tags": ["Query"],
+        "summary": "Delete a Query",
+        "description": "Admin Delets a User Query",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/contacts": {
       "get": {
-        "tags": [
-          "Query"
-        ],
+        "tags": ["Query"],
         "summary": "View All The Queries",
         "description": "Admin Gets All User Queries",
         "parameters": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -233,9 +315,7 @@
     },
     "/login": {
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Log In",
         "description": "User Logs In",
         "parameters": [
@@ -249,16 +329,25 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        }
       },
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "View All The Logs",
         "description": "Admin Gets All The Logs",
         "parameters": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -268,9 +357,7 @@
     },
     "/signup/admin": {
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Signup Admin",
         "description": "Admin Signs Up",
         "parameters": [
@@ -284,14 +371,22 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/signup": {
       "post": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "summary": "Signup User",
         "description": "User Signs Up",
         "parameters": [
@@ -305,15 +400,30 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
       "get": {
-        "tags": [
-          "User"
-        ],
+        "tags": ["User"],
         "description": "Admin Gets All The User Sign Ups",
         "parameters": [],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
         "security": [
           {
             "apiKeyAuth": []
@@ -343,11 +453,7 @@
           "example": "This by far the most straight forward example."
         }
       },
-      "required": [
-        "title",
-        "image",
-        "content"
-      ]
+      "required": ["title", "image", "content"]
     },
     "Comment": {
       "type": "object",
@@ -357,9 +463,7 @@
           "example": "Keep up the good work :D"
         }
       },
-      "required": [
-        "comment"
-      ]
+      "required": ["comment"]
     },
     "Contact": {
       "type": "object",
@@ -381,11 +485,7 @@
           "example": "We'd like to schedule a meeting with the creator due to PIS present."
         }
       },
-      "required": [
-        "names",
-        "email",
-        "message"
-      ]
+      "required": ["names", "email", "message"]
     },
     "Signup": {
       "type": "object",
@@ -403,11 +503,7 @@
           "example": "********"
         }
       },
-      "required": [
-        "name",
-        "email",
-        "password"
-      ]
+      "required": ["name", "email", "password"]
     },
     "Login": {
       "type": "object",
@@ -421,10 +517,7 @@
           "example": "********"
         }
       },
-      "required": [
-        "email",
-        "password"
-      ]
+      "required": ["email", "password"]
     }
   },
   "components": {
