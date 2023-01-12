@@ -10,7 +10,7 @@ const doc = {
         title: "MY REST API",
         description: "The Documentation For My Rest API"
     },
-    host: "localhost:5000",
+    host: process.env.LIVE_URL,
     basePath: "/",
     schemes: ['https','http'],
     consumes: ['application/json'],
