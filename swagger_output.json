@@ -48,14 +48,7 @@
         "summary": "View All The Blogs",
         "description": "User Gets All The Available Blogs",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       },
       "post": {
         "tags": [
@@ -74,17 +67,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
@@ -107,14 +90,7 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       },
       "put": {
         "tags": [
@@ -139,42 +115,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Blogs"
-        ],
-        "summary": "Delete a Blog",
-        "description": "Admin Deletes a Blog",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
@@ -206,11 +147,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
@@ -231,11 +168,7 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "responses": {}
       }
     },
     "/blogs/{id}/stats": {
@@ -279,44 +212,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/contact/{id}": {
-      "delete": {
-        "tags": [
-          "Query"
-        ],
-        "summary": "Delete a Query",
-        "description": "Admin Delets a User Query",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
+        "responses": {}
       }
     },
     "/contacts": {
@@ -327,14 +223,7 @@
         "summary": "View All The Queries",
         "description": "Admin Gets All User Queries",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
@@ -360,11 +249,7 @@
             }
           }
         ],
-        "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
+        "responses": {}
       },
       "get": {
         "tags": [
@@ -373,14 +258,7 @@
         "summary": "View All The Logs",
         "description": "Admin Gets All The Logs",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
@@ -406,17 +284,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "409": {
-            "description": "Conflict"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/signup": {
@@ -437,17 +305,7 @@
             }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "409": {
-            "description": "Conflict"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       },
       "get": {
         "tags": [
@@ -455,14 +313,7 @@
         ],
         "description": "Admin Gets All The User Sign Ups",
         "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
+        "responses": {},
         "security": [
           {
             "apiKeyAuth": []
