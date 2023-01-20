@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 import swaggerUiExpress from 'swagger-ui-express';
 import swaggerDoc from "../swagger_output.json" assert { type: "json" };
 import 'dotenv/config';
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(morgan('dev'))
 app.use(cors({
   origin: '*'
 }))

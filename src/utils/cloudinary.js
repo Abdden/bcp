@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+
 dotenv.config();
 
 cloudinary.config({
@@ -9,4 +11,12 @@ cloudinary.config({
   secure: true,
 });
 
-export default cloudinary;
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "My_Brand_Pics",
+  },
+});
+export default storage;
+
+// export default cloudinary;

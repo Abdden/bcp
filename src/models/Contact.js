@@ -7,4 +7,6 @@ const schema = mongoose.Schema({
   message: String,
 });
 
+schema.set('timestamps', true);
+
 export default mongoose.model('Contact', schema);

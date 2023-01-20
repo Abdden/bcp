@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
-const validateArticle = (req, res, next) => {
+const validateUpdate = (req, res, next) => {
   const articleSchema = Joi.object({
-    title: Joi.string().min(12).required(),
+    title: Joi.string().min(12),
     image: Joi.string(),
-    content: Joi.string().min(20).required(),
+    content: Joi.string().min(20),
     comment: Joi.string().min(20),
   });
 
@@ -16,4 +16,4 @@ const validateArticle = (req, res, next) => {
   next();
 };
 
-export default validateArticle;
+export default validateUpdate;

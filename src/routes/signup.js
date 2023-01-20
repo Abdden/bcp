@@ -9,7 +9,7 @@ const router = express.Router();
 passGen();
 
 router.post('/signup/admin',
-authenticateAdmin,
+// authenticateAdmin,
 validateSignup,
 AdminController.userOne, () => {
   // #swagger.tags = ['User']
@@ -40,7 +40,7 @@ userController.userOne, () => {
 
 
 router.get(
-  '/signup',
+  '/users',
   authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
   userController.viewUsers, () => {

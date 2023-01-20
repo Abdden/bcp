@@ -10,7 +10,7 @@ const validateContact = (req, res, next) => {
 
   const { error } = contactSchema.validate(req.body);
   if (error) {
-    res.status(404);
+    res.status(400);
     return res.send(error.details[0].message);
   }
   next();

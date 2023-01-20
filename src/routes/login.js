@@ -1,7 +1,6 @@
 import express from 'express';
 import LogController from '../controllers/logController.js';
 import validateLogin from '../validation/loginVal.js';
-import authenticateAdmin from '../middlewares/adminAuth.js';
 const router = express.Router();
 
 router.post('/login',
@@ -19,15 +18,15 @@ LogController.logOne, () => {
 });
 
 
-router.get('/login',
-authenticateAdmin,
-LogController.viewUsers, () => {
-  // #swagger.tags = ['User']
-  // #swagger.description = 'Admin Gets All The Logs'
-  // #swagger.summary = 'View All The Logs'
-  /* #swagger.security = [{
-        "apiKeyAuth": []
-  }] */
-});
+// router.get('/login',
+// authenticateAdmin,
+// LogController.viewUsers, () => {
+//   // #swagger.tags = ['User']
+//   // #swagger.description = 'Admin Gets All The Logs'
+//   // #swagger.summary = 'View All The Logs'
+//   /* #swagger.security = [{
+//         "apiKeyAuth": []
+//   }] */
+// });
 
 export default router;

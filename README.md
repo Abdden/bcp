@@ -8,11 +8,9 @@
 
 >
 
-## My Brand Server & DataBase Connection
-
 ## My Brand UI Template Is Hosted [here](https://abdden.github.io/my-brand/) On Gh-Pages.
 
-## My Brand API Endpoints Are Hosted On [Cyclic.sh](https://).
+## My Brand API Endpoints Are Hosted On [render.com](https://herestohope.onrender.com).
 
 ### Available API Endpoints
 

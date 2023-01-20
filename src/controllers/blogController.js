@@ -1,18 +1,14 @@
 import Blog from '../models/Blog.js';
-import cloudinary from '../cloudinary.js';
+
 
 export class BlogController {
   static async blogOne(req, res) {
     try {
-      const { title, image, content, comment } = req.body;
-      const snapBack = await cloudinary.uploader.upload(image, {
-        folder: 'my_brand_snaps',
-      });
+      const { title, content } = req.body;
       const blog = new Blog({
         title,
-        image: { public_id: snapBack.public_id, url: snapBack.secure_url },
+        image: req.file.path,
         content,
-        comment,
       });
       const inDb = await Blog.findOne({ title: title });
       if (inDb) {
@@ -46,26 +42,24 @@ export class BlogController {
   static async updateBlog(req, res) {
     try {
 
-      const { title, image, content } = req.body;
-      const snapBack = await cloudinary.uploader.upload(image, {
-        folder: 'my_brand_snaps',
-      });
-      const theUpdated = {
-        title,
-        image: { public_id: snapBack.public_id, url: snapBack.secure_url },
-        content,
-      };
-      await Blog.findOneAndUpdate(
-        {
-          _id: req.params.id,
-        },
-        {
-          title: theUpdated.title,
-          image: theUpdated.image,
-          content: theUpdated.content,
-        }
-      );
-      return res.send(theUpdated);
+      if(req.body.title){
+                await Blog.findOneAndUpdate({_id: req.params.id},{
+                  title:req.body.title
+                })
+                }
+                if(req.body.content){
+                    await Blog.findOneAndUpdate({_id: req.params.id},{
+                        content:req.body.content
+                      })
+                }
+                if(req.file){
+                    await Blog.findOneAndUpdate({_id: req.params.id},{
+                        image:req.file.path
+                      })
+                }
+                return res.status(200).json({
+                    message:'Blog updated'
+                })
     } catch (error) {
       return res.status(500).json({ error: error });
     }

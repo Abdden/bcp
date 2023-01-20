@@ -1,12 +1,14 @@
 import express from 'express';
 import passport from 'passport';
 import validateArticle from '../validation/blogVal.js';
+import validateUpdate from '../validation/updateVal.js';
 import BlogController from '../controllers/blogController.js';
 import blogStats from '../controllers/likesCont.js';
 import ComLikeMidWare from '../middlewares/likesComMid.js';
 import validateComment from '../validation/comVal.js';
 import authenticateAdmin from '../middlewares/adminAuth.js';
 import passGen from '../utils/passport.js';
+import upload from '../utils/multer.js';
 
 passGen();
 
@@ -30,6 +32,7 @@ router.post(
   '/blogs',
   authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
+  upload.single("image"),
   validateArticle,
   BlogController.blogOne, () => {
   // #swagger.tags = ['Blogs']
@@ -47,11 +50,12 @@ router.post(
 });
 
 
-router.put(
+router.patch(
   '/blogs/:id',
   authenticateAdmin,
   passport.authenticate('jwt', { session: false }),
-  validateArticle,
+  upload.single("image"),
+  validateUpdate,
   BlogController.updateBlog, () => {
   // #swagger.tags = ['Blogs']
   // #swagger.description = 'Admin Updates a Blog'
