@@ -9,7 +9,7 @@ const router = express.Router();
 passGen();
 
 router.post('/signup/admin',
-// authenticateAdmin,
+authenticateAdmin,
 validateSignup,
 AdminController.userOne, () => {
   // #swagger.tags = ['User']

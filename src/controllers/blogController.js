@@ -12,7 +12,7 @@ export class BlogController {
       });
       const inDb = await Blog.findOne({ title: title });
       if (inDb) {
-        return res.status(400).send('Blog Already Exists!');
+        return res.status(409).send('Blog Already Exists!');
       }
       await blog.save();
       return res.send(blog);

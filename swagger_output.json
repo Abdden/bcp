@@ -67,8 +67,8 @@
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
+          "409": {
+            "description": "Conflict"
           },
           "500": {
             "description": "Internal Server Error"
@@ -103,7 +103,7 @@
           }
         }
       },
-      "put": {
+      "patch": {
         "tags": ["Blogs"],
         "summary": "Update Blog Details",
         "description": "Admin Updates a Blog",
@@ -330,29 +330,16 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      },
-      "get": {
-        "tags": ["User"],
-        "summary": "View All The Logs",
-        "description": "Admin Gets All The Logs",
-        "parameters": [],
-        "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
           }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
+        }
       }
     },
     "/signup/admin": {
@@ -411,7 +398,9 @@
             "description": "Internal Server Error"
           }
         }
-      },
+      }
+    },
+    "/users": {
       "get": {
         "tags": ["User"],
         "description": "Admin Gets All The User Sign Ups",

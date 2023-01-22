@@ -89,5 +89,3 @@ const doc = {
 swaggerAutogen()(outputDoc, allEndpointsFiles, doc).then(async () => {
   await import('./index.js')
 });
-
-//Test
