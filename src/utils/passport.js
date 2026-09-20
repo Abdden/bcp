@@ -16,7 +16,7 @@ async function passGen() {
         jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
       },
       (jwtPayload, done) => {
-        return Signup.findOne({ _id: jwtPayload })
+        return Signup.findOne({ _id: jwtPayload?._id || jwtPayload })
           .then((Signup) => {
             return done(null, Signup);
           })
