@@ -22,17 +22,10 @@ app.use(cors({
 app.use('/api-docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDoc));
               
 const port = process.env.PORT || 5000;
+const isJest = Boolean(process.env.JEST_WORKER_ID);
 
 try {
   mongoose.set('strictQuery', true);
-  mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-  }).then(() =>{
-    console.log('DB Is Connected');
-    app.listen(port, () => {
-    console.log('Server Has Started!');
-  });
-  }).catch((error) => console.log(error));
 
   app.use('/', blogRoute);
   app.use('/', contactRoute);
@@ -42,6 +35,17 @@ try {
   app.use((req, res) => res.status(400).json({
   Error: 'No Such Request/Content',
   }));
+
+  if (!isJest) {
+    mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+    }).then(() =>{
+      console.log('DB Is Connected');
+      app.listen(port, () => {
+      console.log('Server Has Started!');
+    });
+    }).catch((error) => console.log(error));
+  }
 } catch (error) {
   console.log(error);
 }

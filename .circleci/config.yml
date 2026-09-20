@@ -9,7 +9,18 @@ jobs:
     environment:
       DATABASE_URI: process.env.MONGODB_URI
     steps:
-      - checkout
+      # CircleCI's default `checkout` uses an SSH deploy key. Build 68 failed
+      # with `Permission denied (publickey)` before npm install. This public
+      # repo can be cloned over HTTPS without project SSH settings.
+      - run:
+          name: Checkout via HTTPS
+          command: |
+            set -euo pipefail
+            git init
+            git remote add origin "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git"
+            git fetch --force origin "${CIRCLE_SHA1}"
+            git reset --hard FETCH_HEAD
+            git checkout -B "${CIRCLE_BRANCH}"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:

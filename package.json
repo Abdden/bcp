@@ -8,7 +8,8 @@
     "dev": "better-npm-run dev",
     "start": "babel-node ./src/index.js",
     "swagger-autogen": "babel-node ./src/swagger.js",
-    "test": "jest --testTimeout=20000 --detectOpenHandles --forceExit --collect-coverage && coveralls < coverage/lcov.info"
+    "test": "jest --testTimeout=20000 --detectOpenHandles --forceExit --collect-coverage && npm run coverage:ci",
+    "coverage:ci": "if [ -n \"$COVERALLS_REPO_TOKEN\" ]; then coveralls < coverage/lcov.info; else echo 'Skipping Coveralls (COVERALLS_REPO_TOKEN not set)'; fi"
   },
   "betterScripts": {
     "dev": {
@@ -50,7 +51,13 @@
     "@babel/node": "^7.20.5",
     "coveralls": "^3.1.1",
     "jest": "^29.3.1",
+    "mongodb-memory-server": "^9.5.0",
     "nodemon": "^2.0.20",
     "supertest": "^6.3.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["<rootDir>/src/test/env.js"],
+    "setupFilesAfterEnv": ["<rootDir>/src/test/setup.js"]
   }
 }
